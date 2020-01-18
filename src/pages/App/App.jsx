@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import userService from '../../utils/userService';
-import SignupPage from '../SignupPage/SignupPage'
-import LoginPage from '../LoginPage/LoginPage'
-import HomePage from '../HomePage/HomePage'
+import SignUpPage from '../SignUpPage/SignUpPage';
+import LoginPage from '../LoginPage/LoginPage';
+import HomePage from '../HomePage/HomePage';
 
 class App extends Component {
   constructor() {
@@ -40,7 +40,7 @@ class App extends Component {
             exact
             path="/signup"
             render={({ history }) => (
-              <SignupPage
+              <SignUpPage
                 history={history}
                 handleSignuporLogin={this.handleSignuporLogin}
               />
