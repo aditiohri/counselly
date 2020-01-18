@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
 
-class SignupForm extends Component {
+class SignUpForm extends Component {
   state = {
     name: "",
     email: "",
@@ -111,4 +111,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+export default SignUpForm;
