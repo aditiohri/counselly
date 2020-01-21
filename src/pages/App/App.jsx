@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import * as appointmentAPI from '../../services/appointments-api'
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import AddApptPage from '../AddApptPage/AddApptPage';
+import ApptListPage from '../ApptListPage/ApptListPage';
 
 class App extends Component {
   constructor() {
@@ -17,13 +19,19 @@ class App extends Component {
     };
   }
 
-
   handleAddAppt = async newApptData => {
     const newAppt = await appointmentAPI.create(newApptData);
     this.setState(state => ({
       appointments: [...state.appointments, newAppt]
     }),
-    () => this.props.history.push('/'))
+    () => this.props.history.push('/all-appointments'))
+  }
+
+  handleDeleteAppt = async id => {
+    await appointmentAPI.deleteOne(id);
+    this.setState(state => ({
+      appointments: state.appointments.filter(a => a._id !== id)
+    }), () => this.props.history.push('/all-appointments'))
   }
 
   handleLogout = () => {
@@ -75,6 +83,25 @@ class App extends Component {
             }/>
           <Route
             exact
+            path="/all-appointments"
+            render={() => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <ApptListPage
+                user={this.state.user}
+                handleDeleteAppt={this.handleDeleteAppt}
+                appts={this.state.appointments}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+          <Route
+            exact
             path="/signup"
             render={({ history }) => (
               <SignUpPage
@@ -100,4 +127,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter (App);
