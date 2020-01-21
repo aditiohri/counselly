@@ -23,7 +23,7 @@ const NavBar = props => {
     </div>
   );
 
-  return <div className="NavBar">{nav}</div>;
+  return <div className="NavBar flex-h align-flex-end header-footer">{nav}</div>;
 };
 
 export default NavBar;
