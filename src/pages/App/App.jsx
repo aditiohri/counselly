@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+// import * as appointmentAPI from '../../services/appointments-api'
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -10,10 +11,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser()
+      user: userService.getUser(),
+      appointments: []
     };
   }
 
+
+  handleAddAppt = async newApptData => {
+
+  }
+  
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
