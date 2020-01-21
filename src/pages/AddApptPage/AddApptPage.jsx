@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './AddApptPage.css'
 
 class AddApptPage extends Component {
 
@@ -28,8 +29,8 @@ class AddApptPage extends Component {
 
     render () {
         return (
-            <>
-            <h1>Add Appointments</h1>
+            <div className="flex-h">
+            <h1 className="flex-h">Add Appointments</h1>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
                 <label>Client's Name (required)</label>
@@ -69,7 +70,7 @@ class AddApptPage extends Component {
             ADD APPOINTMENT
             </button>
             </form>
-            </>
+            </div>
         )
     }
 
