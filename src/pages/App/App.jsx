@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-// import * as appointmentAPI from '../../services/appointments-api'
+import * as appointmentAPI from '../../services/appointments-api'
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -18,9 +18,13 @@ class App extends Component {
 
 
   handleAddAppt = async newApptData => {
-
+    const newAppt = await appointmentAPI.create(newApptData);
+    this.setState(state => ({
+      appointments: [...state.appointments, newAppt]
+    }),
+    () => this.props.history.push('/'))
   }
-  
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -29,6 +33,12 @@ class App extends Component {
   handleSignuporLogin = () => {
     this.setState({ user: userService.getUser() });
   };
+
+  async componentDidMount() {
+    const appointments = await appointmentAPI.getAll();
+    this.setState({appointments})
+  }
+
   render() {
     return (
       <div>
