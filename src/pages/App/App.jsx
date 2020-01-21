@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import * as appointmentAPI from '../../services/appointments-api'
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
+import AddApptPage from '../AddApptPage/AddApptPage';
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,25 @@ class App extends Component {
               />
             )}
           />
+          <Route
+            exact
+            path="/add-appointment"
+            render={() => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <AddApptPage
+                user={this.state.user}
+                handleAddAppt={this.handleAddAppt}
+                appts={this.state.appointments}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
           <Route
             exact
             path="/signup"
