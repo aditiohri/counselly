@@ -3,7 +3,8 @@ const Appointment = require("../models/appointment");
 module.exports = {
     create,
     show,
-    index
+    index,
+    delete: deleteOne
 }
 
 async function create(req, res) {
@@ -21,3 +22,7 @@ async function index(req, res){
     res.status(200).json(appointment);
 }
 
+async function deleteOne(req, res) {
+    const deletedAppt = await Appointment.findByIdAndRemove(req.params.id);
+    res.status(200).json(deletedAppt)
+}
