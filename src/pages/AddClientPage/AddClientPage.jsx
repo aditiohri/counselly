@@ -8,7 +8,6 @@ class AddClientPage extends Component {
             name: '',
             email: '',
             phone: '',
-            userID: this.props.user._id
         }
     };
 
@@ -62,13 +61,6 @@ class AddClientPage extends Component {
                     value={this.state.formData.phone}
                     onChange={this.handleChange}
                     required
-                />
-                <input 
-                type="hidden" 
-                name="userID"
-                value={this.props.user._id}
-                onChange={this.handleChange}
-                required
                 />
             </div>
             <button

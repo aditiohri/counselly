@@ -10,7 +10,9 @@ module.exports = {
 async function create(req, res) {
     try {
         console.log('req.body from controllers/clients.js', req)
-        const client = await Client.create(req.body);
+        const client = new Client(req.body)
+        client.user = req.user._id;
+        await client.save();
         res.status(201).json(client);
     } catch (e) {
         console.log(e)
@@ -23,7 +25,7 @@ async function show(req, res) {
 }
 
 async function index(req, res) {
-    const client = await Client.find({ userID: req.user._id });
+    const client = await Client.find({ user: req.user._id });
     res.status(200).json(client);
 }
 
