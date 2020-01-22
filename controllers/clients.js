@@ -8,9 +8,10 @@ module.exports = {
 }
 
 async function create(req, res) {
+    console.log('client create controller req.body: ', req.body)
     try {
-        console.log('req.body from controllers/clients.js', req)
-        const client = new Client(req.body)
+       const client = new Client(req.body);
+// req.user is the logged in user
         client.user = req.user._id;
         await client.save();
         res.status(201).json(client);

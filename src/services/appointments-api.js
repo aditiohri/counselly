@@ -3,16 +3,20 @@ const BASE_URL = '/api/appointments';
 
 export function getAll() {
     return fetch(BASE_URL, {
-        headers: {
-      'Authorization': 'Bearer ' + tokenService.getToken()
-    }})
+              headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+            },})
     .then(res => res.json())
 }
 
 export function create(appt) {
     return fetch(BASE_URL, {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+            },        
         body: JSON.stringify(appt)
     }).then(res => res.json());
 }

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const appointmentSchema = new Schema(
+const appointmentSchema = new mongoose.Schema(
     {
         clientName: String,
         date: String,

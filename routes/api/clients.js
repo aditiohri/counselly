@@ -4,7 +4,6 @@ const clientCtrl = require('../../controllers/clients');
 
 /*---------- Protected Routes ----------*/
 
-router.use(require('../../config/auth'));
 router.get('/', clientCtrl.index);
 router.get('/:id', clientCtrl.index);
 router.post('/', clientCtrl.create);
