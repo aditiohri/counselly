@@ -8,7 +8,8 @@ class AddApptPage extends Component {
         formData: {
             clientName: '',
             date: '',
-            time: ''
+            time: '',
+            userID: this.props.user._id
         }
     };
 
@@ -60,6 +61,12 @@ class AddApptPage extends Component {
                     value={this.state.formData.time}
                     onChange={this.handleChange}
                     required
+                />
+                <input 
+                type="hidden" 
+                name="userID"
+                value={this.props.user._id}
+                onChange={this.handleChange}
                 />
             </div>
             <button

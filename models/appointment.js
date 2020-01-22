@@ -5,7 +5,8 @@ const appointmentSchema = new mongoose.Schema(
         date: String,
         time: String,
         notes: String,
-        isOver: {type: Boolean, default: false}
+        isOver: {type: Boolean, default: false},
+        userID: String
     }, {
         timestamps: true
     }

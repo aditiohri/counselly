@@ -1,15 +1,15 @@
-const BASE_URL = '/api/appointments';
+const BASE_URL = '/api/clients';
 
 export function getAll() {
     return fetch(BASE_URL)
     .then(res => res.json())
 }
 
-export function create(appt) {
+export function create(client) {
     return fetch(BASE_URL, {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(appt)
+        header: {'content-type': 'application/json'},
+        body: JSON.stringify(client)
     }).then(res => res.json());
 }
 

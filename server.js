@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, "build")));
 // Put API routes here, before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/appointments", require("./routes/api/appointments"));
+app.use("/api/clients", require("./routes/api/clients"));
 app.use(require("./config/auth"));
 
 app.get("/*", function(req, res) {
