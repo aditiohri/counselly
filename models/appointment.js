@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const appointmentSchema = new mongoose.Schema(
     {
         clientName: String,
@@ -6,7 +7,7 @@ const appointmentSchema = new mongoose.Schema(
         time: String,
         notes: String,
         isOver: {type: Boolean, default: false},
-        userID: String
+        user: {type: Schema.Types.ObjectId, ref: 'User'}
     }, {
         timestamps: true
     }
