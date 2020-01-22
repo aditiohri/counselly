@@ -11,7 +11,6 @@ const NavBar = props => {
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link className="NavBar-Link" to="/all-appointments">All Appointments</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link className="NavBar-Link" to="/add-client">Add Client</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link className="NavBar-Link" to="/all-clients">All Clients</Link>

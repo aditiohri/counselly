@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const clientSchema = new mongoose.Schema({
+const mongoose = require("mongoose");
+const clientSchema = new mongoose.Schema(
+    {
     name: String,
     email: String,
     phone: String,
@@ -8,4 +9,4 @@ const clientSchema = new mongoose.Schema({
     timestamps: true
 })
 
-module.export = mongoose.model("Client", clientSchema)
+module.exports = mongoose.model("Client", clientSchema)

@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   handleAddAppt = async newApptData => {
+    newApptData.userID = this.state.user._id
     const newAppt = await appointmentAPI.create(newApptData);
     this.setState(state => ({
       appointments: [...state.appointments, newAppt]
@@ -36,7 +37,7 @@ class App extends Component {
     this.setState(state => ({
       clients: [...state.clients, newClient]
     }),
-    () => this.props.history.push('/'))
+    () => this.props.history.push('/all-clients'))
   }
 
   handleDeleteAppt = async id => {
@@ -50,7 +51,7 @@ class App extends Component {
     await clientAPI.deleteOne(id);
     this.setState(state => ({
       clients: state.clients.filter(a => a._id !== id)
-    }), () => this.props.history.push('/'))
+    }), () => this.props.history.push('/all-clients'))
   }
 
   handleLogout = () => {
@@ -65,6 +66,8 @@ class App extends Component {
   async componentDidMount() {
     const appointments = await appointmentAPI.getAll();
     this.setState({appointments})
+    const clients = await clientAPI.getAll();
+    this.setState({clients})
   }
 
   render() {

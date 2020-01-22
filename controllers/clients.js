@@ -1,4 +1,4 @@
-const Client = require("../models/appointment");
+const Client = require("../models/client");
 
 module.exports = {
     create,
@@ -8,8 +8,12 @@ module.exports = {
 }
 
 async function create(req, res) {
-    const client = await Client.create(req.body);
-    res.status(201).json(client);
+    try {
+        const client = await Client.create(req.body);
+        res.status(201).json(client);
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 async function show(req, res) {

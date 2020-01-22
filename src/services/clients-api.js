@@ -1,8 +1,12 @@
+import tokenService from '../utils/tokenService';
 const BASE_URL = '/api/clients';
 
 export function getAll() {
-    return fetch(BASE_URL)
-    .then(res => res.json())
+    return fetch(BASE_URL, {
+    headers: {
+      'Authorization': 'Bearer ' + tokenService.getToken()
+    }
+    }).then(res => res.json())
 }
 
 export function create(client) {
