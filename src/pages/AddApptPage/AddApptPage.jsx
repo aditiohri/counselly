@@ -30,7 +30,7 @@ class AddApptPage extends Component {
 
     render () {
         return (
-            <div className="flex-h">
+        <div className="flex-h">
             <h1 className="flex-h">Add Appointments</h1>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -77,7 +77,7 @@ class AddApptPage extends Component {
             ADD APPOINTMENT
             </button>
             </form>
-            </div>
+        </div>
         )
     }
 

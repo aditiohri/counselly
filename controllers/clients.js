@@ -8,6 +8,7 @@ module.exports = {
 }
 
 async function create(req, res) {
+        console.log(req.body)
     try {
         const client = await Client.create(req.body);
         res.status(201).json(client);
@@ -22,7 +23,7 @@ async function show(req, res) {
 }
 
 async function index(req, res) {
-    const client = await Client.find({});
+    const client = await Client.find({ userID: req.user._id });
     res.status(200).json(client);
 }
 
