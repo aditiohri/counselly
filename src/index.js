@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 <Router>
-<Route render={(history) => <App history={history}/>}/>
+    <Route render={(history) => <App history={history}/>}/>
 </Router>, 
 document.getElementById('root'));
 

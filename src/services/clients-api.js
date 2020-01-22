@@ -10,12 +10,14 @@ export function getAll() {
 }
 
 export function create(client) {
+    console.log('clients-api create: ', client)
     return fetch(BASE_URL, {
         method: 'POST',
         header: {'content-type': 'application/json'},
         body: JSON.stringify(client)
     }).then(res => res.json());
 }
+
 
 export function deleteOne(id) {
     return fetch(`${(BASE_URL)}/${id}`, {

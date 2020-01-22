@@ -17,6 +17,7 @@ class AddClientPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        console.log(this.state.formData)
         this.props.handleAddClient(this.state.formData)
     }
 
@@ -30,7 +31,7 @@ class AddClientPage extends Component {
 
     render () {
         return (
-            <div className="flex-h">
+        <div className="flex-h">
             <h1 className="flex-h">Add Client</h1>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -78,7 +79,7 @@ class AddClientPage extends Component {
             ADD CLIENT
             </button>
             </form>
-            </div>
+        </div>
         )
     }
 

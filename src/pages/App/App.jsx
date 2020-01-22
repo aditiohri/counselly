@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   handleAddAppt = async newApptData => {
-    newApptData.userID = this.state.user._id
     const newAppt = await appointmentAPI.create(newApptData);
     this.setState(state => ({
       appointments: [...state.appointments, newAppt]
@@ -33,6 +32,7 @@ class App extends Component {
   }
 
   handleAddClient = async newClientData => {
+    console.log('from handleAddClient: ', newClientData)
     const newClient = await clientAPI.create(newClientData);
     this.setState(state => ({
       clients: [...state.clients, newClient]
@@ -65,9 +65,9 @@ class App extends Component {
 
   async componentDidMount() {
     const appointments = await appointmentAPI.getAll();
-    this.setState({appointments})
     const clients = await clientAPI.getAll();
-    this.setState({clients})
+    this.setState({appointments, clients})
+    console.log('comp did mount, printing this.state: ', this.state)
   }
 
   render() {

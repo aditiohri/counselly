@@ -34,7 +34,7 @@ class AddApptPage extends Component {
             <h1 className="flex-h">Add Appointments</h1>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
-                <label>Client's Name (required)</label>
+                <label>Client's Name</label>
                 <input 
                     className="form-control"
                     name="clientName"
@@ -44,7 +44,7 @@ class AddApptPage extends Component {
                 />
             </div>
             <div className="form-group">
-                <label>Appointment Date (required)</label>
+                <label>Appointment Date</label>
                 <input 
                     className="form-control"
                     name="date"
@@ -54,7 +54,7 @@ class AddApptPage extends Component {
                 />
             </div>
             <div className="form-group">
-                <label>Appointment time (required)</label>
+                <label>Appointment time</label>
                 <input 
                     className="form-control"
                     name="time"
@@ -67,6 +67,7 @@ class AddApptPage extends Component {
                 name="userID"
                 value={this.props.user._id}
                 onChange={this.handleChange}
+                required
                 />
             </div>
             <button
