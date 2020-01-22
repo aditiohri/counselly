@@ -3,19 +3,23 @@ import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import * as appointmentAPI from '../../services/appointments-api'
+import * as clientAPI from '../../services/clients-api'
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import AddApptPage from '../AddApptPage/AddApptPage';
+import AddClientPage from '../AddClientPage/AddClientPage';
 import ApptListPage from '../ApptListPage/ApptListPage';
+import ClientListPage from '../ClientListPage/ClientListPage';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      appointments: []
+      appointments: [],
+      clients: []
     };
   }
 
@@ -27,11 +31,26 @@ class App extends Component {
     () => this.props.history.push('/all-appointments'))
   }
 
+  handleAddClient = async newClientData => {
+    const newClient = await clientAPI.create(newClientData);
+    this.setState(state => ({
+      clients: [...state.clients, newClient]
+    }),
+    () => this.props.history.push('/'))
+  }
+
   handleDeleteAppt = async id => {
     await appointmentAPI.deleteOne(id);
     this.setState(state => ({
       appointments: state.appointments.filter(a => a._id !== id)
     }), () => this.props.history.push('/all-appointments'))
+  }
+
+  handleDeleteClient = async id => {
+    await clientAPI.deleteOne(id);
+    this.setState(state => ({
+      clients: state.clients.filter(a => a._id !== id)
+    }), () => this.props.history.push('/'))
   }
 
   handleLogout = () => {
@@ -95,6 +114,44 @@ class App extends Component {
                 user={this.state.user}
                 handleDeleteAppt={this.handleDeleteAppt}
                 appts={this.state.appointments}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+            <Route
+            exact
+            path="/add-client"
+            render={() => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <AddClientPage
+                user={this.state.user}
+                handleAddClient={this.handleAddClient}
+                clients={this.state.clients}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+          <Route
+            exact
+            path="/all-clients"
+            render={() => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <ClientListPage
+                user={this.state.user}
+                handleDeleteClient={this.handleDeleteClient}
+                clients={this.state.clients}
               />
               </>
               :
