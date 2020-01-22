@@ -9,7 +9,7 @@ module.exports = {
 
 async function create(req, res) {
     try {
-        console.log('req.body from controllers/clients.js', req)
+        // console.log('req.body from controllers/clients.js', req)
         const client = await Client.create(req.body);
         res.status(201).json(client);
     } catch (e) {

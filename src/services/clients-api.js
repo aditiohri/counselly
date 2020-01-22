@@ -13,7 +13,10 @@ export function create(client) {
     console.log('clients-api create: ', client)
     return fetch(BASE_URL, {
         method: 'POST',
-        header: {'content-type': 'application/json'},
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+            },
         body: JSON.stringify(client)
     }).then(res => res.json());
 }
