@@ -5,7 +5,7 @@ const clientCtrl = require('../../controllers/clients');
 /*---------- Protected Routes ----------*/
 
 router.get('/', clientCtrl.index);
-router.get('/:id', clientCtrl.index);
+router.get('/:id', clientCtrl.show);
 router.post('/', clientCtrl.create);
 router.delete('/:id', clientCtrl.delete);
 

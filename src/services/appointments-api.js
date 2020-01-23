@@ -6,7 +6,7 @@ export function getAll() {
               headers: {
             'content-type': 'application/json',
             'Authorization': 'Bearer ' + tokenService.getToken()
-            },})
+            }})
     .then(res => res.json())
 }
 
@@ -25,4 +25,12 @@ export function deleteOne(id) {
     return fetch(`${(BASE_URL)}/${id}`, {
         method: 'DELETE'
     }).then(res => res.json());
+}
+
+export function update(appt) {
+    return fetch(`${BASE_URL}/${appt._id}`, {
+    method: 'PUT',
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify(appt)
+  }).then(res => res.json());
 }

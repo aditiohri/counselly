@@ -4,7 +4,8 @@ module.exports = {
     create,
     show,
     index,
-    delete: deleteOne
+    delete: deleteOne,
+    update
 }
 
 async function create(req, res) {
@@ -29,4 +30,9 @@ async function index(req, res){
 async function deleteOne(req, res) {
     const deletedAppt = await Appointment.findByIdAndRemove(req.params.id);
     res.status(200).json(deletedAppt)
+}
+
+async function update(req, res) {
+    const updatedAppt = await Appointment.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.status(200).json(updatedAppt)
 }

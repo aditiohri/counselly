@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router'
-import * as appointmentAPI from '../../services/appointments-api'
-import * as clientAPI from '../../services/clients-api'
+import { withRouter } from 'react-router';
+import * as appointmentAPI from '../../services/appointments-api';
+import * as clientAPI from '../../services/clients-api';
+import * as noteAPI from '../../services/notes-api';
 import userService from '../../utils/userService';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import AddApptPage from '../AddApptPage/AddApptPage';
-import AddClientPage from '../AddClientPage/AddClientPage';
 import ApptListPage from '../ApptListPage/ApptListPage';
+import ApptDetailPage from '../ApptDetailPage/ApptDetailPage';
+import AddClientPage from '../AddClientPage/AddClientPage';
 import ClientListPage from '../ClientListPage/ClientListPage';
 
 class App extends Component {
@@ -19,7 +21,8 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       appointments: [],
-      clients: []
+      clients: [],
+      notes: []
     };
   }
 
@@ -40,11 +43,37 @@ class App extends Component {
     () => this.props.history.push('/all-clients'))
   }
 
+  handleAddNote = async (newNoteData) => {
+    const newNote = await noteAPI.create(newNoteData);
+    this.setState(state => ({
+      appointments: [...state.appointments, newNote]
+    }),
+    () => this.props.history.push('/details'))
+  }
+
+  handleDeleteNote = async id => {
+    await noteAPI.deleteNote(id);
+    this.setState(state => ({
+      appointments: state.appointments
+    }), () => this.props.history.push('/all-appointments'))
+  }
+
   handleDeleteAppt = async id => {
     await appointmentAPI.deleteOne(id);
     this.setState(state => ({
       appointments: state.appointments.filter(a => a._id !== id)
     }), () => this.props.history.push('/all-appointments'))
+  }
+
+    handleUpdateAppt = async updatedApptData => {
+    const updatedAppt = await appointmentAPI.update(updatedApptData);
+    const newApptArray = this.state.appointments.map(a => 
+      a._id === updatedAppt._id ? updatedAppt : a
+    );
+    this.setState(
+      {appointments: newApptArray},
+      () => this.props.history.push('/all-appointments')
+    );
   }
 
   handleDeleteClient = async id => {
@@ -67,7 +96,6 @@ class App extends Component {
     const appointments = await appointmentAPI.getAll();
     const clients = await clientAPI.getAll();
     this.setState({appointments, clients})
-    console.log('comp did mount, printing this.state: ', this.state)
   }
 
   render() {
@@ -98,6 +126,7 @@ class App extends Component {
                 user={this.state.user}
                 handleAddAppt={this.handleAddAppt}
                 appts={this.state.appointments}
+                clients={this.state.clients}
               />
               </>
               :
@@ -117,6 +146,29 @@ class App extends Component {
                 user={this.state.user}
                 handleDeleteAppt={this.handleDeleteAppt}
                 appts={this.state.appointments}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+             <Route
+            exact
+            path="/details"
+            render={({location}) => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <ApptDetailPage
+                location={location}
+                user={this.state.user}
+                handleDeleteAppt={this.handleDeleteAppt}
+                handleAddNote={this.handleAddNote}
+                handleDeleteNote={this.handleDeleteNote}
+                appts={this.state.appointments}
+                notes={this.state.notes}
               />
               </>
               :

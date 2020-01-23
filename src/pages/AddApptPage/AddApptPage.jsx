@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './AddApptPage.css'
 
 class AddApptPage extends Component {
 
@@ -34,13 +33,23 @@ class AddApptPage extends Component {
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
                 <label>Client's Name</label>
-                <input 
-                    className="form-control"
+                <select
+                    type="dropdown"
                     name="clientName"
                     value={this.state.formData.clientName}
                     onChange={this.handleChange}
-                    required
-                />
+                >
+                {this.props.clients.map( (client) => (
+                    <option 
+                    name="clientName"
+                    key={client.email}
+                    value={client.name}
+                    onChange={this.handleChange}
+                    >
+                    {client.name}
+                    </option>
+                ))}
+                </select>
             </div>
             <div className="form-group">
                 <label>Appointment Date</label>
