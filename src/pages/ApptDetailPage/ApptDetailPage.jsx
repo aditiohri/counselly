@@ -1,7 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import ApptCard from '../../components/ApptCard/ApptCard';
 import NoteItem from '../../components/NoteItem/NoteItem';
-import AddNote from '../../components/AddNote/AddNote';
+// import AddNote from '../../components/AddNote/AddNote';
 
 function ApptDetailPage(props) {
   const appt = props.location.state.appt;
@@ -15,12 +16,13 @@ function ApptDetailPage(props) {
       />
     </div>
     <div className="flex-h">
-        <AddNote 
-            handleAddNote={props.handleAddNote}
-            appt={appt}
-            notes={appt.notes}
-            key={appt.notes._id}
-        />
+        <Link
+          className='btn btn-xs btn-info'
+          to={{
+            pathname: '/add-note',
+            state: {appt}
+          }}
+        > Add Note </Link>
         <NoteItem 
             appt={appt}
             notes={appt.notes}

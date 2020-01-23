@@ -3,7 +3,8 @@ const BASE_URL = '/api';
 
 export function create(newNote){
     return fetch(`${BASE_URL}/appointments/${newNote._id}/notes`, {
-        method: 'POST',
+        method: 'PUT',
+        headers: {'content-type': 'application/json'},
         body: JSON.stringify(newNote)
         }).then(res => res.json())
 }

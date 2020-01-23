@@ -3,7 +3,7 @@ const noteCtrl = require('../../controllers/notes');
 
 /*---------- Protected Routes ----------*/
 
-router.post('/appointments/:id/notes', noteCtrl.create);
+router.put('/appointments/:id/notes', noteCtrl.create);
 router.delete('/notes/:id', noteCtrl.delete);
 
 module.exports = router;

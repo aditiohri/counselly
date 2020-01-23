@@ -10,6 +10,8 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
 import AddApptPage from '../AddApptPage/AddApptPage';
+import AddNote from '../../components/AddNote/AddNote';
+import EditApptPage from '../EditApptPage/EditApptPage';
 import ApptListPage from '../ApptListPage/ApptListPage';
 import ApptDetailPage from '../ApptDetailPage/ApptDetailPage';
 import AddClientPage from '../AddClientPage/AddClientPage';
@@ -43,12 +45,23 @@ class App extends Component {
     () => this.props.history.push('/all-clients'))
   }
 
-  handleAddNote = async (newNoteData) => {
+  handleAddNote = async newNoteData => {
     const newNote = await noteAPI.create(newNoteData);
     this.setState(state => ({
       appointments: [...state.appointments, newNote]
     }),
     () => this.props.history.push('/details'))
+  }
+
+    handleUpdateAppt = async updatedApptData => {
+    const updatedAppt = await appointmentAPI.update(updatedApptData);
+    const newApptArray = this.state.appointments.map(a => 
+      a._id === updatedAppt._id ? updatedAppt : a
+    );
+    this.setState(
+      {appointments: newApptArray},
+      () => this.props.history.push('/all-appointments')
+    );
   }
 
   handleDeleteNote = async id => {
@@ -65,16 +78,6 @@ class App extends Component {
     }), () => this.props.history.push('/all-appointments'))
   }
 
-    handleUpdateAppt = async updatedApptData => {
-    const updatedAppt = await appointmentAPI.update(updatedApptData);
-    const newApptArray = this.state.appointments.map(a => 
-      a._id === updatedAppt._id ? updatedAppt : a
-    );
-    this.setState(
-      {appointments: newApptArray},
-      () => this.props.history.push('/all-appointments')
-    );
-  }
 
   handleDeleteClient = async id => {
     await clientAPI.deleteOne(id);
@@ -174,6 +177,60 @@ class App extends Component {
               :
               <Redirect to='/login'/>
             }/>
+            <Route
+            exact
+            path="/add-note"
+            render={({location}) => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <ApptDetailPage
+                location={location}
+                user={this.state.user}
+                handleDeleteAppt={this.handleDeleteAppt}
+                handleAddNote={this.handleAddNote}
+                handleDeleteNote={this.handleDeleteNote}
+                appts={this.state.appointments}
+                notes={this.state.notes}
+              />
+               <AddNote 
+                location={location}
+                handleAddNote={this.handleAddNote}
+                handleUpdateAppt={this.handleUpdateAppt}
+                appts={this.state.appointments}
+                notes={this.state.notes}
+                key={this.state.appointments}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+         
+             <Route
+            exact
+            path="/edit"
+            render={({location}) => 
+            userService.getUser() ?
+            <>
+            <HomePage
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+              />
+              <EditApptPage
+                location={location}
+                user={this.state.user}
+                handleUpdateAppt={this.handleUpdateAppt}
+                appts={this.state.appointments}
+                clients={this.state.clients}
+              />
+              </>
+              :
+              <Redirect to='/login'/>
+            }/>
+            
             <Route
             exact
             path="/add-client"

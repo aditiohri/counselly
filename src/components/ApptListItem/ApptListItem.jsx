@@ -11,6 +11,15 @@ function ApptListItem({appt, handleDeleteAppt}) {
         <p className='panel-title'>{appt.time}</p>
       </div>
       <div className='panel-footer ApptListItem-action-panel'>
+        <Link
+          className='btn btn-xs btn-warning'
+          to={{
+            pathname: '/edit',
+            state: {appt}
+          }}
+        >
+          EDIT
+        </Link>
           <Link
           className='btn btn-xs btn-info'
           to={{

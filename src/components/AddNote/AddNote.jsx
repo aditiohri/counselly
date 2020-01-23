@@ -4,10 +4,7 @@ class AddNote extends Component {
 
     state= {
         invalidForm: true,
-        formData: {
-            summary: '',
-            img: ''
-        }
+        formData: this.props.location.state.appt
 }
 
     formRef = React.createRef();
@@ -15,7 +12,7 @@ class AddNote extends Component {
 
 handleSubmit = e => {
     e.preventDefault();
-    this.props.handleAddNote(this.state.formData)
+    this.props.handleUpdateAppt(this.state.formData)
 }
 
 handleChange = e => {

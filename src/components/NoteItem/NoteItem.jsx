@@ -8,13 +8,19 @@ const notesImg = ({notes, appt}) => {
     )
 }
 
-function NoteItem({notes, key, appt, handleDeleteNote}) {
-    return (
-       <div className='panel panel-default'>
+const notesSum = ({notes, appt}) => {
+    if (notes.summary) return (
       <div className="panel-heading">
         <h3 className='panel-title'>Summary</h3>
         <p className='panel-title'>{notes.summary}</p>
       </div>
+    )
+}
+
+function NoteItem({notes, key, appt, handleDeleteNote}) {
+    return (
+       <div className='panel panel-default'>
+        {notesSum}
         {notesImg}
       <div className='panel-footer ApptListItem-action-panel'>
         <button

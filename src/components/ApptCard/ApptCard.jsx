@@ -16,7 +16,7 @@ function ApptCard({appt}) {
         </dl>
       </div>
       <div className='panel-footer'>
-        <Link to='/all-appointments'>RETURN TO LIST</Link>
+        <Link to='/all-appointments'>RETURN TO INDEX</Link>
       </div>
     </div>
   );
