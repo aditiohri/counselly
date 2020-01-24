@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [**Counselly**](https://counselly.herokuapp.com/)
 
-## Available Scripts
+### <a name="home"></a> **Contents**
+1. [Description](#desc)
+2. [Getting Started](#start)
+3. [User Experience](#ui) 
+4. [Tech](#tech)
+5. [Unresolved issues](#issues)
+6. [Future Enhancements](#stretch)
 
-In the project directory, you can run:
+## <a name="desc"></a> **Description**
+________________
 
-### `npm start`
+Counselly is an app for counsellors, therapists or anyone who works with one-on-one clients. It was created to help counsellors organize their notes for client work.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[top](#home)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## <a name="start"></a> **Getting Started**
+________________
 
-### `npm test`
+[Deployed App](https://counselly.herokuapp.com/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Trello Board](https://trello.com/b/jAFMBKPS/counselly)
+Find my project documents, including my Entity Relationship Diagram and general project management flow at the above Trello link.
 
-### `npm run build`
+[top](#home)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## <a name="ui"></a> **User Experience**
+________________
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Landing Page**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Login / Signup Page Wireframe](https://trello-attachments.s3.amazonaws.com/5e2083a1082f790dc13a68f4/5e209715ea999d7aa72b4c1a/fcb0ec92e71ae464fb39699a857b0da7/Login_or_Sign-Up_Page_Basic_Wireframe.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+... more coming soon
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[top](#home)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## <a name="tech"></a> **Tech**
+________________
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* MongoDB/Mongoose
+* Express
+* React
+* Node.js
 
-## Learn More
+[top](#home)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## <a name="issues"></a> **Unresolved Issues**
+________________
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* After the user adds a note, they are redirected to the index page - they should be directed back to the appointment detail page
 
-### Code Splitting
+[top](#home)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## <a name="stretch"></a> **Future Enhancements**
+________________
 
-### Analyzing the Bundle Size
+* Styling: Use Material UI
+* Clean up code
+* Add Date-Time Picker to scheduling form
+* Add Moment.js to render timing
+* Integrate Twilio SendGrid to send clients reminder emails
+* Users get reminders to write notes for clients post-appointment
+* Create a client-facing app
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[top](#home)

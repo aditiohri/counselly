@@ -23,8 +23,7 @@ class App extends Component {
     this.state = {
       user: userService.getUser(),
       appointments: [],
-      clients: [],
-      notes: []
+      clients: []
     };
   }
 
@@ -45,14 +44,14 @@ class App extends Component {
     () => this.props.history.push('/all-clients'))
   }
 
-  handleAddNote = async newNoteData => {
-    const newNote = await noteAPI.create(newNoteData);
-    this.setState(state => ({
-      appointments: [...state.appointments, newNote]
-    }),
-    () => this.props.history.push('/details'))
+    handleAddNote = async (newNoteData, id) => {
+      console.log('hello from handleAddNote - id: ', id)
+      await appointmentAPI.addNote(newNoteData, id);
+      this.setState(state=> ({
+        appointments: [...state.appointments]
+      }),
+      () => this.props.history.push('/all-appointments'))
   }
-
     handleUpdateAppt = async updatedApptData => {
     const updatedAppt = await appointmentAPI.update(updatedApptData);
     const newApptArray = this.state.appointments.map(a => 

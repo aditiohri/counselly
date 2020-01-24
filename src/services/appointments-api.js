@@ -34,3 +34,14 @@ export function update(appt) {
     body: JSON.stringify(appt)
   }).then(res => res.json());
 }
+
+export function addNote(note, id) {
+    return fetch(`${BASE_URL}/notes/${id}`, {
+    method: 'POST',
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify({
+        note: note,
+        appt: id
+        })
+  }).then(res => res.json());
+}

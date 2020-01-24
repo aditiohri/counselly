@@ -5,7 +5,8 @@ module.exports = {
     show,
     index,
     delete: deleteOne,
-    update
+    update,
+    addNote
 }
 
 async function create(req, res) {
@@ -33,6 +34,19 @@ async function deleteOne(req, res) {
 }
 
 async function update(req, res) {
+    console.log(req.body)
     const updatedAppt = await Appointment.findByIdAndUpdate(req.params.id, req.body, {new: true});
     res.status(200).json(updatedAppt)
+}
+
+async function addNote(req, res) {
+    console.log('hello from addNote')
+    console.log(req.body.note)
+    console.log('id:', req.body.appt)
+    const addNote = await Appointment.findById(req.body.appt)
+    console.log(addNote)
+    // console.log(req.body.summary)
+    addNote.notes.push(req.body.note)
+    addNote.save()
+    console.log(addNote)
 }
