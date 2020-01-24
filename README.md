@@ -44,6 +44,7 @@ ________________
 * Express
 * React
 * Node.js
+* JSON WebToken Auth
 
 [top](#home)
 
@@ -51,6 +52,7 @@ ________________
 ________________
 
 * After the user adds a note, they are redirected to the index page - they should be directed back to the appointment detail page
+* Delete Note Functionality not working
 
 [top](#home)
 
