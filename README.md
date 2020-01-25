@@ -53,13 +53,14 @@ ________________
 
 * After the user adds a note, they are redirected to the index page - they should be directed back to the appointment detail page
 * Delete Note Functionality not working
+* Change Favicon.ico in Public folder
 
 [top](#home)
 
 ## <a name="stretch"></a> **Future Enhancements**
 ________________
 
-* Styling: Use Material UI
+* Styling: Use Grommet
 * Clean up code
 * Add Date-Time Picker to scheduling form
 * Add Moment.js to render timing
