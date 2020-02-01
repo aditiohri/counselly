@@ -16,6 +16,17 @@ import ApptListPage from '../ApptListPage/ApptListPage';
 import ApptDetailPage from '../ApptDetailPage/ApptDetailPage';
 import AddClientPage from '../AddClientPage/AddClientPage';
 import ClientListPage from '../ClientListPage/ClientListPage';
+import { Grommet } from 'grommet';
+
+const theme = {
+  global: {
+    font: {
+      family: 'Kalam',
+      size: '18px',
+      height: '20px'
+    }
+  }
+}
 
 class App extends Component {
   constructor() {
@@ -102,7 +113,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Grommet theme={theme}>
         <Switch>
           <Route
             exact
@@ -289,7 +300,7 @@ class App extends Component {
             )}
           />
         </Switch>
-      </div>
+      </Grommet>
     );
   }
 }
