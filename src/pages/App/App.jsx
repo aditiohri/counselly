@@ -16,10 +16,13 @@ import ApptListPage from '../ApptListPage/ApptListPage';
 import ApptDetailPage from '../ApptDetailPage/ApptDetailPage';
 import AddClientPage from '../AddClientPage/AddClientPage';
 import ClientListPage from '../ClientListPage/ClientListPage';
-import { Grommet } from 'grommet';
+import { Box, Grommet } from 'grommet';
 
 const theme = {
   global: {
+    colors: {
+      brand: '#80ffa1'
+    },
     font: {
       family: 'Kalam',
       size: '18px',
@@ -27,6 +30,20 @@ const theme = {
     }
   }
 }
+
+const AppBar = (props) => (
+  <Box
+    tag='header'
+    direction='row'
+    align='center'
+    justify='between'
+    background='brand'
+    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    elevation='medium'
+    style={{ zIndex: '1' }}
+    {...props}
+  />
+)
 
 class App extends Component {
   constructor() {
@@ -114,6 +131,7 @@ class App extends Component {
   render() {
     return (
       <Grommet theme={theme}>
+      <AppBar>
         <Switch>
           <Route
             exact
@@ -300,6 +318,7 @@ class App extends Component {
             )}
           />
         </Switch>
+        </AppBar>
       </Grommet>
     );
   }
