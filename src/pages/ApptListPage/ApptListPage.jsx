@@ -1,10 +1,24 @@
 import React from 'react';
 import './ApptListPage.css'
-import ApptListItem from '../../components/ApptListItem/ApptListItem'
+import ApptListItem from '../../components/ApptListItem/ApptListItem';
+import {Box} from 'grommet';
 
 function ApptListPage(props) {
     return(
-        <div className="flex-h">
+        <>
+        <Box 
+        direction='row' 
+        flex 
+        align="center"
+        basis="medium"
+        >
+        <Box 
+        flex 
+        overflow={{ horizontal:'hidden' }}
+        align="center"
+        basis="medium"
+        justify="center"
+        >
         <div className="ApptListPage-grid">
         <h1>All Appointments</h1>
         {props.appts.map(appt =>
@@ -15,7 +29,9 @@ function ApptListPage(props) {
         />
         )}
         </div>
-        </div>
+        </Box>
+        </Box>
+        </>
     )
 }
 

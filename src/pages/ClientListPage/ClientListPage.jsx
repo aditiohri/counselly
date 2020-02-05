@@ -1,10 +1,23 @@
 import React from 'react';
 import './ClientListPage.css'
-import ClientListItem from '../../components/ClientListItem/ClientListItem'
+import ClientListItem from '../../components/ClientListItem/ClientListItem';
+import {Box} from 'grommet';
 
 function ClientListPage(props) {
     return(
-        <div className="flex-h">
+        <>
+        <Box 
+        direction='row' 
+        flex 
+        align="center"
+        basis="medium"
+        >
+        <Box 
+        flex 
+        align="center"
+        basis="medium"
+        justify="center"
+        >
         <div className="ApptListPage-grid">
         <h1>All Clients</h1>
         {props.clients.map(client =>
@@ -15,7 +28,9 @@ function ClientListPage(props) {
         />
         )}
         </div>
-        </div>
+        </Box>
+        </Box>
+        </>
     )
 }
 
