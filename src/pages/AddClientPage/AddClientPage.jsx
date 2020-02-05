@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './AddClientPage.css'
+import { Box } from 'grommet';
 
 class AddClientPage extends Component {
     state = {
@@ -30,7 +31,19 @@ class AddClientPage extends Component {
 
     render () {
         return (
-        <div className="flex-h">
+        <>
+        <Box 
+        direction='column' 
+        flex 
+        align="center"
+        basis="medium"
+        >
+        <Box 
+        flex 
+        align="center"
+        basis="medium"
+        justify="center"
+        >
             <h1 className="flex-h">Add Client</h1>
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -71,7 +84,9 @@ class AddClientPage extends Component {
             ADD CLIENT
             </button>
             </form>
-        </div>
+        </Box>
+        </Box>
+        </>
         )
     }
 
