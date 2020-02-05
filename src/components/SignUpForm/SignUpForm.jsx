@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
+import { Box } from 'grommet';
+
+const AppBar = (props) => (
+  <Box
+    tag='header'
+    direction='row'
+    align='center'
+    justify='between'
+    background='brand'
+    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+    elevation='medium'
+    style={{ zIndex: '1' }}
+    {...props}
+  />
+)
+
 
 class SignUpForm extends Component {
   state = {
@@ -42,8 +58,10 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div>
-        <header className="header-footer">Sign Up</header>
+      <>
+      <AppBar>
+        <header>Sign Up</header>
+      </AppBar>
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="col-sm-12">
@@ -106,7 +124,7 @@ class SignUpForm extends Component {
             </div>
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }
