@@ -1,21 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
-import { Box } from 'grommet';
-
-const AppBar = (props) => (
-  <Box
-    tag='header'
-    direction='row'
-    align='center'
-    justify='between'
-    background='brand'
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-    elevation='medium'
-    style={{ zIndex: '1' }}
-    {...props}
-  />
-)
+import { FormField, Form } from 'grommet';
 
 
 class SignUpForm extends Component {
@@ -59,60 +45,50 @@ class SignUpForm extends Component {
   render() {
     return (
       <>
-      <AppBar>
-        <header>Sign Up</header>
-      </AppBar>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+        <Form onSubmit={this.handleSubmit}>
+              <FormField
                 type="text"
-                className="form-control"
                 placeholder="Name"
                 value={this.state.name}
                 name="name"
+                required
+                validate={{ 
+                  regexp: /^[a-z]{2,}/i,
+                  message: '3 or more letters - no numbers!'
+                  }}
                 onChange={this.handleChange}
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+              <FormField
                 type="email"
-                className="form-control"
-                placeholder="Email"
+                placeholder="email@address.com"
                 value={this.state.email}
                 name="email"
+                required
+                validate={{
+                  regexp: /^([\w.+]+)@([\w-]+\.)([\w]{2,})$/i,
+                  message: "must include '@' and '.'"
+                }}
                 onChange={this.handleChange}
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+              <FormField
                 type="password"
-                className="form-control"
                 placeholder="Password"
                 value={this.state.password}
                 name="password"
+                validate={{
+                  regexp: /^(?=\D*\d)\S{6,}$/,
+                  message: "must include at least 6 characters, including one number"
+                }}
                 onChange={this.handleChange}
+
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+              <FormField
                 type="password"
-                className="form-control"
                 placeholder="Confirm Password"
                 value={this.state.passwordConf}
                 name="passwordConf"
                 onChange={this.handleChange}
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
               <button
                 className="btn btn-default"
                 disabled={this.isFormInvalid()}
@@ -121,9 +97,7 @@ class SignUpForm extends Component {
               </button>
               &nbsp;&nbsp;
               <Link to="/">Cancel</Link>
-            </div>
-          </div>
-        </form>
+        </Form>
       </>
     );
   }
