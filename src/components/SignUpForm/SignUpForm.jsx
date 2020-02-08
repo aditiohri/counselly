@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
-import { FormField, Form } from 'grommet';
-
+import { FormField, Form, Button, Box } from 'grommet';
+import { Sign } from 'grommet-icons';
 
 class SignUpForm extends Component {
   state = {
@@ -48,7 +47,7 @@ class SignUpForm extends Component {
         <Form onSubmit={this.handleSubmit}>
               <FormField
                 type="text"
-                placeholder="Name"
+                label="Name:"
                 value={this.state.name}
                 name="name"
                 required
@@ -59,6 +58,7 @@ class SignUpForm extends Component {
                 onChange={this.handleChange}
               />
               <FormField
+                label="Email:"
                 type="email"
                 placeholder="email@address.com"
                 value={this.state.email}
@@ -71,8 +71,9 @@ class SignUpForm extends Component {
                 onChange={this.handleChange}
               />
               <FormField
+                label="Password:"
                 type="password"
-                placeholder="Password"
+                placeholder="Create Password"
                 value={this.state.password}
                 name="password"
                 validate={{
@@ -89,14 +90,21 @@ class SignUpForm extends Component {
                 name="passwordConf"
                 onChange={this.handleChange}
               />
-              <button
-                className="btn btn-default"
+            <Box direction="row" justify="between" pad="medium">
+              <Button
+                primary
+                label="Sign Up"
                 disabled={this.isFormInvalid()}
-              >
-                Sign Up
-              </button>
+                icon={<Sign />}
+             />
               &nbsp;&nbsp;
-              <Link to="/">Cancel</Link>
+                <Button
+                  primary
+                  color="#FF4B2B"
+                  label="Cancel"
+                  onClick={() => {this.props.history.replace('/')}}
+                />
+            </Box>
         </Form>
       </>
     );

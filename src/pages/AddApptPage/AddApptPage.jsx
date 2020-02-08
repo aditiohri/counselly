@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import { Box } from 'grommet';
+import React, { Component } from 'react';
+import {FormField, Select, Form, Button, Box } from 'grommet';
+// import {UserAdd} from 'grommet-icons';
 
 class AddApptPage extends Component {
 
     state = {
-        invalidForm: true,
+        // invalidForm: true,
         formData: {
             clientName: '',
             date: '',
@@ -23,9 +24,10 @@ class AddApptPage extends Component {
         const formData = {...this.state.formData, [e.target.name]: e.target.value};
         this.setState({
             formData,
-            invalidForm: !this.formRef.current.checkValidity()
+            // invalidForm: !this.formRef.current.checkValidity()
         });
     }
+
 
     render () {
         return (
@@ -43,55 +45,42 @@ class AddApptPage extends Component {
         justify="center"
         >
             <h1 className="flex-h">Add Appointments</h1>
-            <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
-            <div className="form-group">
-                <label>Client's Name</label>
-                <select
-                    type="dropdown"
+            <Form 
+            ref={this.formRef} 
+            autoComplete="off" 
+            onSubmit={this.handleSubmit}
+            >
+                <FormField
+                    label="Client"
+                    component={Select}
                     name="clientName"
+                    options={this.props.clients.map(client => client.name)}
                     value={this.state.formData.clientName}
+                    // valueKey={this.setState({ clientName: this.value })}
                     onChange={this.handleChange}
-                >
-                {this.props.clients.map( (client) => (
-                    <option 
-                    name="clientName"
-                    key={client.email}
-                    value={client.name}
-                    onChange={this.handleChange}
-                    >
-                    {client.name}
-                    </option>
-                ))}
-                </select>
-            </div>
-            <div className="form-group">
-                <label>Appointment Date</label>
-                <input 
-                    className="form-control"
+                />
+                <FormField 
+                    label="Appointment Date"
                     name="date"
                     value={this.state.formData.date}
                     onChange={this.handleChange}
                     required
                 />
-            </div>
-            <div className="form-group">
-                <label>Appointment time</label>
-                <input 
-                    className="form-control"
+                <FormField
+                    label="Appointment time"
                     name="time"
                     value={this.state.formData.time}
                     onChange={this.handleChange}
                     required
                 />
-            </div>
-            <button
+            <Button
+                primary
                 type="submit"
                 className="btn"
-                disabled={this.state.invalidForm}
-            >
-            ADD APPOINTMENT
-            </button>
-            </form>
+                // disabled={this.state.invalidForm}
+                label="Add appointment"
+            />
+            </Form>
         </Box>
         </Box>
         </>

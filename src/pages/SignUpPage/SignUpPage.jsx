@@ -38,15 +38,8 @@ class SignUpPage extends Component {
         align="center"
         basis="medium"
         >
-          <Box 
-          flex 
-          align="center"
-          basis="medium"
-          justify="center"
-          >
             <SignUpForm {...this.props} updateMessage={this.updateMessage} />
             <p>{this.state.message}</p>
-          </Box>
         </Box>
       </>
     );

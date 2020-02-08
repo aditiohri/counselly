@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./LoginPage.css";
 import userService from "../../utils/userService";
-import { Box } from 'grommet';
+import { FormField, Form, Button, Box } from 'grommet';
+import { Login } from 'grommet-icons';
 
 const AppBar = (props) => (
   <Box
@@ -51,41 +51,53 @@ class LoginPage extends Component {
       <AppBar>
       <header className="header-footer">Log In</header>
       </AppBar>
-      <div className="LoginPage">
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+      <Box 
+        direction='column' 
+        flex 
+        align="center"
+        basis="medium"
+        >
+          <Box 
+          flex 
+          align="center"
+          basis="medium"
+          justify="center"
+          >
+        <Form onSubmit={this.handleSubmit}>
+              <FormField
+                label="Email:"
                 type="email"
-                className="form-control"
                 placeholder="Email"
                 value={this.state.email}
                 name="email"
                 onChange={this.handleChange}
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
+              <FormField
+                label="Password:"
                 type="password"
-                className="form-control"
                 placeholder="Password"
                 value={this.state.pw}
                 name="pw"
                 onChange={this.handleChange}
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Log In</button>
-              &nbsp;&nbsp;&nbsp;
-              <Link to="/">Cancel</Link>
-            </div>
-          </div>
-        </form>
-      </div>
+              <Box direction="row" justify="between" pad="medium">
+                <Button 
+                  primary
+                  label="Log In"
+                  icon={<Login />}
+                  type="submit"
+                />
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  primary
+                  color="#FF4B2B"
+                  label="Cancel"
+                  onClick={() => {this.props.history.replace('/')}}
+                />
+              </Box>
+        </Form>
+      </Box>
+    </Box>
       </>
     );
   }
