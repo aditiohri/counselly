@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as appointmentAPI from '../../services/appointments-api';
 import * as clientAPI from '../../services/clients-api';
 import * as noteAPI from '../../services/notes-api';
 import userService from '../../utils/userService';
-import SignUpPage from '../SignUpPage/SignUpPage';
-import LoginPage from '../LoginPage/LoginPage';
 import HomePage from '../HomePage/HomePage';
-import AddApptPage from '../AddApptPage/AddApptPage';
-import AddNote from '../../components/AddNote/AddNote';
-import EditApptPage from '../EditApptPage/EditApptPage';
-import ApptListPage from '../ApptListPage/ApptListPage';
-import ApptDetailPage from '../ApptDetailPage/ApptDetailPage';
-import AddClientPage from '../AddClientPage/AddClientPage';
-import ClientListPage from '../ClientListPage/ClientListPage';
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
 import { Grommet } from 'grommet';
+import './App.css';
 
 const theme = {
   global: {
@@ -117,196 +109,29 @@ class App extends Component {
   render() {
     return (
       <Grommet theme={theme}>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/add-appointment"
-            render={() => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <AddApptPage
-                user={this.state.user}
-                handleAddAppt={this.handleAddAppt}
-                appts={this.state.appointments}
-                clients={this.state.clients}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-          <Route
-            exact
-            path="/all-appointments"
-            render={() => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <ApptListPage
-                user={this.state.user}
-                handleDeleteAppt={this.handleDeleteAppt}
-                appts={this.state.appointments}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-             <Route
-            exact
-            path="/details"
-            render={({location}) => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <ApptDetailPage
-                location={location}
-                user={this.state.user}
-                handleDeleteAppt={this.handleDeleteAppt}
-                handleAddNote={this.handleAddNote}
-                handleDeleteNote={this.handleDeleteNote}
-                appts={this.state.appointments}
-                notes={this.state.notes}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-            <Route
-            exact
-            path="/add-note"
-            render={({location}) => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <ApptDetailPage
-                location={location}
-                user={this.state.user}
-                handleDeleteAppt={this.handleDeleteAppt}
-                handleAddNote={this.handleAddNote}
-                handleDeleteNote={this.handleDeleteNote}
-                appts={this.state.appointments}
-                notes={this.state.notes}
-              />
-               <AddNote 
-                location={location}
-                handleAddNote={this.handleAddNote}
-                handleUpdateAppt={this.handleUpdateAppt}
-                appts={this.state.appointments}
-                notes={this.state.notes}
-                key={this.state.appointments}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-         
-             <Route
-            exact
-            path="/edit"
-            render={({location}) => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <EditApptPage
-                location={location}
-                user={this.state.user}
-                handleUpdateAppt={this.handleUpdateAppt}
-                appts={this.state.appointments}
-                clients={this.state.clients}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-            
-            <Route
-            exact
-            path="/add-client"
-            render={() => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <AddClientPage
-                user={this.state.user}
-                handleAddClient={this.handleAddClient}
-                clients={this.state.clients}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-          <Route
-            exact
-            path="/all-clients"
-            render={() => 
-            userService.getUser() ?
-            <>
-            <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-              <ClientListPage
-                user={this.state.user}
-                handleDeleteClient={this.handleDeleteClient}
-                clients={this.state.clients}
-              />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-          <Route
-            exact
-            path="/signup"
-            render={({ history }) => (
-              <SignUpPage
-                history={history}
-                handleSignuporLogin={this.handleSignuporLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/login"
-            render={({ history }) => (
-              <LoginPage
-                history={history}
-                handleSignuporLogin={this.handleSignuporLogin}
-              />
-            )}
-          />
-        </Switch>
+        <NavBar 
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+        />
+        <HomePage 
+          user={this.state.user}
+          clients={this.state.clients}
+          appts={this.state.appointments}
+          handleSignuporLogin={this.handleSignuporLogin}
+          handleLogout={this.handleLogout}
+          handleAddAppt={this.handleAddAppt}
+          handleDeleteAppt={this.handleDeleteAppt}
+          handleUpdateAppt={this.handleUpdateAppt}
+          handleAddClient={this.handleAddClient}
+          handleDeleteClient={this.handleDeleteClient}
+          handleAddNote={this.handleAddNote}
+          handleDeleteNote={this.handleDeleteNote}
+        />
+        <Footer />
       </Grommet>
     );
   }
 }
 
 
-export default withRouter (App);
+export default withRouter(App);

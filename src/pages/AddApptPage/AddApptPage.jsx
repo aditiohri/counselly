@@ -21,6 +21,7 @@ class AddApptPage extends Component {
     }
 
     handleChange = e => {
+        console.log('handleChange: ', this.state.formData.name)
         const formData = {...this.state.formData, [e.target.name]: e.target.value};
         this.setState({
             formData,
