@@ -16,53 +16,33 @@ const HomePage = props => {
   return (
     <>
         <Switch>
-          {/* <Route
-            exact
-            path="/"
-            render={() => (
-              <HomePage
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-              />
-            )}
-          /> */}
           <Route
             exact
             path="/add-appointment"
-            render={() => 
-            props.user ?
-            <>
+            render={() => (
               <AddApptPage
                 user={props.user}
                 handleAddAppt={props.handleAddAppt}
                 appts={props.appts}
                 clients={props.clients}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
+            )}
+          /> 
           <Route
             exact
             path="/all-appointments"
-            render={() => 
-            props.user ?
-            <>
+            render={() => (
               <ApptListPage
                 user={props.user}
                 handleDeleteAppt={props.handleDeleteAppt}
                 appts={props.appts}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
+              )}
+            />
              <Route
             exact
             path="/details"
-            render={({location}) => 
-            props.user ?
-            <>
+            render={({location}) => (
               <ApptDetailPage
                 location={location}
                 user={props.user}
@@ -72,16 +52,13 @@ const HomePage = props => {
                 appts={props.appts}
                 notes={props.notes}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
+              )}
+            />
             <Route
             exact
             path="/add-note"
-            render={({location}) => 
-            props.user ?
-            <>
+            render={({location}) => (
+              <>
               <ApptDetailPage
                 location={location}
                 user={props.user}
@@ -99,16 +76,12 @@ const HomePage = props => {
                 key={props.appts}
               />
               </>
-              :
-              <Redirect to='/login'/>
-            }/>
-         
+              )}
+            />
              <Route
             exact
             path="/edit"
-            render={({location}) => 
-            props.user ?
-            <>
+            render={({location}) => (
               <EditApptPage
                 location={location}
                 user={props.user}
@@ -116,41 +89,30 @@ const HomePage = props => {
                 appts={props.appts}
                 clients={props.clients}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
-            
+              )}
+            />
             <Route
             exact
             path="/add-client"
-            render={() => 
-            props.user ?
-            <>
+            render={() => (
               <AddClientPage
                 user={props.user}
                 handleAddClient={props.handleAddClient}
                 clients={props.clients}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
+              )}
+            />
           <Route
             exact
             path="/all-clients"
-            render={() => 
-            props.user ?
-            <>
+            render={() => (
               <ClientListPage
                 user={props.user}
                 handleDeleteClient={props.handleDeleteClient}
                 clients={props.clients}
               />
-              </>
-              :
-              <Redirect to='/login'/>
-            }/>
+            )}
+          />
           <Route
             exact
             path="/signup"
