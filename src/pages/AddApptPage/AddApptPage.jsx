@@ -21,11 +21,17 @@ class AddApptPage extends Component {
     }
 
     handleChange = e => {
-        console.log('handleChange: ', this.state.formData.name)
         const formData = {...this.state.formData, [e.target.name]: e.target.value};
         this.setState({
             formData,
             // invalidForm: !this.formRef.current.checkValidity()
+        });
+    }
+
+    handleSelectChange = e => {
+        const formData = {...this.state.formData, [e.target.name]: e.value};
+        this.setState({
+            formData,
         });
     }
 
@@ -55,10 +61,10 @@ class AddApptPage extends Component {
                     label="Client"
                     component={Select}
                     name="clientName"
-                    options={this.props.clients.map(client => client.name)}
+                    options={this.props.options}
                     value={this.state.formData.clientName}
-                    // valueKey={this.setState({ clientName: this.value })}
-                    onChange={this.handleChange}
+                    onChange={this.handleSelectChange}
+                    required
                 />
                 <FormField 
                     label="Appointment Date"

@@ -25,6 +25,7 @@ const HomePage = props => {
                 handleAddAppt={props.handleAddAppt}
                 appts={props.appts}
                 clients={props.clients}
+                options={props.clients.map(client => client.name)}
               />
             )}
           /> 
