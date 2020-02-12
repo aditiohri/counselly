@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import {FormField, Select, Form, Button, Box } from 'grommet';
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
+import MomentLocaleUtils, {
+    formatDate,
+    parseDate,
+} from 'react-day-picker/moment';
+import 'moment/locale/it';
 // import {UserAdd} from 'grommet-icons';
 
 class AddApptPage extends Component {
+    constructor(props) {
+        super(props);
+        this.handleDayChange = this.handleDayChange.bind(this)
+        this.state = {
+            // invalidForm: true,
+            formData: {
+                clientName: '',
+                selectedDay: null,
+                time: '',
+            }
+        };
 
-    state = {
-        // invalidForm: true,
-        formData: {
-            clientName: '',
-            date: '',
-            time: '',
-        }
-    };
+    }
 
     formRef = React.createRef();
 
@@ -35,6 +46,14 @@ class AddApptPage extends Component {
         });
     }
 
+    handleDayChange = e => {
+        console.log('handleDayChange event: ', e, e.name)
+        const selectedDay = this.state.formData;
+        this.setState({
+            selectedDay: e,
+        })
+        console.log('state after dayChange sets state: ', selectedDay)
+    }
 
     render () {
         return (
@@ -67,12 +86,26 @@ class AddApptPage extends Component {
                     required
                 />
                 <FormField 
-                    label="Appointment Date"
-                    name="date"
-                    value={this.state.formData.date}
-                    onChange={this.handleChange}
+                    label="Date"
+                    type="date"
+                    name="selectedDay"
+                    data-date-format={formatDate}
+                    placeholder={`${formatDate(new Date())}`}
+                    value={this.state.formData.selectedDay}
+                    onChange={e => console.log(e.target.value)}
                     required
                 />
+                
+                {/* <input 
+                    type="date"
+                    name="selectedDay"
+                    data-date-format={formatDate}
+                    placeholder={`${formatDate(new Date())}`}
+                    value={this.state.formData.selectedDay}
+                    onChange={this.handleChange}
+                    required
+                /> */}
+                
                 <FormField
                     label="Appointment time"
                     name="time"

@@ -12,7 +12,7 @@ const noteSchema = new Schema({
 const appointmentSchema = new mongoose.Schema(
     {
         clientName: String,
-        date: String,
+        date: Date,
         time: String,
         notes: [noteSchema],
         isOver: {type: Boolean, default: false},
