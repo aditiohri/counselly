@@ -50,8 +50,8 @@ const HomePage = props => {
                 handleDeleteAppt={props.handleDeleteAppt}
                 handleAddNote={props.handleAddNote}
                 handleDeleteNote={props.handleDeleteNote}
-                appts={props.appts}
-                notes={props.notes}
+                // appts={props.appts}
+                // notes={props.notes}
               />
               )}
             />

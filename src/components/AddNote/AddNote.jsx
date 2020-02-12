@@ -62,3 +62,7 @@ render () {
     }
 
 export default AddNote
+
+//   const returnData = () => {
+//     return appt
+//   }

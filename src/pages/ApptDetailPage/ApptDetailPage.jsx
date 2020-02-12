@@ -4,8 +4,11 @@ import ApptCard from '../../components/ApptCard/ApptCard';
 import NoteItem from '../../components/NoteItem/NoteItem';
 // import AddNote from '../../components/AddNote/AddNote';
 
+
 function ApptDetailPage(props) {
   const appt = props.location.state.appt;
+  console.log('from appt: ', appt.notes)
+
   return (
     <>
       <h1>Appointment Details</h1>
@@ -26,11 +29,11 @@ function ApptDetailPage(props) {
         </Link>
       
       <h3 className='panel-title'>Summary</h3>
-        {appt.notes.map(notes => ( 
+        {appt && appt.notes && appt.notes.length > 0 && appt.notes.map(item => ( 
             <NoteItem 
             appt={appt}
-            notes={notes}
-            key={notes._id}
+            notes={item}
+            key={item._id}
             handleDeleteNote={props.handleDeleteNote}
             />
         )

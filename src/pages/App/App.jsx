@@ -58,6 +58,7 @@ class App extends Component {
       this.setState(state => ({
         appointments: newApptArray
       }),
+      // console.log(this.state.appointments))
       () => this.props.history.push('/all-appointments'))
   }
     handleUpdateAppt = async updatedApptData => {
