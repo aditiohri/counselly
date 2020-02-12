@@ -26,7 +26,7 @@ handleChange = e => {
 
 render () {
     return (
-        <div classname="flex-h">
+        <div className="flex-h">
             <form ref={this.formRef} autoComplete="off" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label>Appointment Notes</label>

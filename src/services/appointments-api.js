@@ -43,5 +43,5 @@ export function addNote(note, id) {
         note: note,
         appt: id
         })
-  }).then(res => res.json());
+        }).then(res => res.json());
 }

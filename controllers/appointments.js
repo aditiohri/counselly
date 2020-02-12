@@ -41,12 +41,11 @@ async function update(req, res) {
 
 async function addNote(req, res) {
     console.log('hello from addNote')
-    console.log(req.body.note)
-    console.log('id:', req.body.appt)
+    console.log('id: ', req.body.appt)
     const addNote = await Appointment.findById(req.body.appt)
-    console.log(addNote)
-    // console.log(req.body.summary)
+    console.log('awaiting appointment find by id: ', addNote)
     addNote.notes.push(req.body.note)
     addNote.save()
-    console.log(addNote)
+    console.log('after saving: ', addNote)
+    res.status(200).json(addNote)
 }

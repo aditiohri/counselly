@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ApptCard from '../../components/ApptCard/ApptCard';
 import NoteItem from '../../components/NoteItem/NoteItem';
 // import AddNote from '../../components/AddNote/AddNote';
@@ -22,13 +22,19 @@ function ApptDetailPage(props) {
             pathname: '/add-note',
             state: {appt}
           }}
-        > Add Note </Link>
-        <NoteItem 
+        > Add Note 
+        </Link>
+      
+      <h3 className='panel-title'>Summary</h3>
+        {appt.notes.map(notes => ( 
+            <NoteItem 
             appt={appt}
-            notes={appt.notes}
-            key={appt.notes._id}
+            notes={notes}
+            key={notes._id}
             handleDeleteNote={props.handleDeleteNote}
-        />
+            />
+        )
+        )}
     </div>
     </>
   );

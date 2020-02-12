@@ -52,9 +52,11 @@ class App extends Component {
 
     handleAddNote = async (newNoteData, id) => {
       console.log('hello from handleAddNote - id: ', id)
-      await appointmentAPI.addNote(newNoteData, id);
-      this.setState(state=> ({
-        appointments: [...state.appointments]
+      const newNote = await appointmentAPI.addNote(newNoteData, id);
+      console.log('thanks add note!')
+      const newApptArray = this.state.appointments.map(a => a._id === id ? a.notes = [...a.notes, {newNote}] : a)
+      this.setState(state => ({
+        appointments: newApptArray
       }),
       () => this.props.history.push('/all-appointments'))
   }

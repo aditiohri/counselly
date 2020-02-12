@@ -5,11 +5,10 @@ class NoteSummary extends Component {
 render() {
     return (
         <div>
-          <h3 className='panel-title'>Summary</h3>
         <div>
-    {this.props.notes.map((note, idx) => (
-          <p className='panel-title'>{note.summary}</p>
-      ))}
+
+          <p key={this.props.id} className='panel-title'>{this.props.note.summary}</p>
+
         </div>
         </div>
     )
