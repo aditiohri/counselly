@@ -92,7 +92,7 @@ class AddApptPage extends Component {
                     data-date-format={formatDate}
                     placeholder={`${formatDate(new Date())}`}
                     value={this.state.formData.selectedDay}
-                    onChange={e => console.log(e.target.value)}
+                    onChange={this.handleChange}
                     required
                 />
                 
