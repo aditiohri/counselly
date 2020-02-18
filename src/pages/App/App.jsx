@@ -6,8 +6,8 @@ import * as noteAPI from '../../services/notes-api';
 import userService from '../../utils/userService';
 import HomePage from '../HomePage/HomePage';
 import NavBar from '../../components/NavBar/NavBar'
-import Footer from '../../components/Footer/Footer'
-import { Grommet } from 'grommet';
+import { Footer, Grommet, Text, Main, Anchor, Box } from 'grommet';
+import { Twitter, Linkedin, Github } from 'grommet-icons';
 import './App.css';
 
 const theme = {
@@ -22,6 +22,26 @@ const theme = {
     }
   }
 }
+
+const Media = () => (
+  <Box direction="row" gap="xxsmall" justify="center">
+    <Anchor 
+      a11yTitle="Find me on Twitter"
+      href="https://twitter.com/aditi_ohri"
+      icon={<Twitter color="brand"/>}
+    />
+    <Anchor 
+      a11yTitle="Check out my code on Github"
+      href="https://github.com/aditiohri/"
+      icon={<Github color="brand"/>}
+    />
+    <Anchor 
+      a11yTitle="Connect with me on LinkedIn"
+      href="https://www.linkedin.com/in/aditi-ohri/"
+      icon={<Linkedin color="brand"/>}
+    />
+  </Box>
+)
 
 class App extends Component {
   constructor() {
@@ -116,6 +136,7 @@ class App extends Component {
           user={this.state.user}
           handleLogout={this.handleLogout}
         />
+        <Main>
         <HomePage 
           user={this.state.user}
           clients={this.state.clients}
@@ -130,7 +151,13 @@ class App extends Component {
           handleAddNote={this.handleAddNote}
           handleDeleteNote={this.handleDeleteNote}
         />
-        <Footer />
+        </Main>
+        <Footer background="dark-4" justify="center" pad="small">
+          <Text textAlign="center" size="small">
+          <Media />
+            © 2020 Copyright Aditi Ohri
+          </Text>
+        </Footer>      
       </Grommet>
     );
   }
